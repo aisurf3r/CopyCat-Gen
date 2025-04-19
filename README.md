@@ -1,6 +1,7 @@
 Generate beautiful handwritten signatures in multiple fonts with a feline twist! 🐱✨
 
-Preview (Replace with an actual preview image link)
+![{696DC81C-DB34-45FE-9486-5DC2C865425F}](https://github.com/user-attachments/assets/0ed08796-f465-463f-bce1-65020f3564da)
+
 
 🌟 Features
 70+ Handwriting Fonts – Choose from a wide variety of elegant and casual signature styles.
