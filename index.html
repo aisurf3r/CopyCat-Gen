@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CopyCat Signature Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Caveat&family=Shadows+Into+Light&family=Sacramento&family=Pacifico&family=Homemade+Apple&family=Alex+Brush&family=Allura&family=Bad+Script&family=Berkshire+Swash&family=Cedarville+Cursive&family=Clicker+Script&family=Cookie&family=Courgette&family=Damion&family=Dawning+of+a+New+Day&family=Devonshire&family=Engagement&family=Ephesis&family=Farsan&family=Freehand&family=Gloria+Hallelujah&family=Gochi+Hand&family=Grand+Hotel&family=Great+Vibes&family=Handlee&family=Herr+Von+Muellerhoff&family=Indie+Flower&family=Itim&family=Italianno&family=Just+Another+Hand&family=Just+Me+Again+Down+Here&family=Kalam&family=Kaushan+Script&family=Kavoon&family=Kristi&family=La+Belle+Aurore&family=League+Script&family=Leckerli+One&family=Lobster&family=Lobster+Two&family=Long+Cang&family=Mali&family=Marck+Script&family=Meow+Script&family=Mr+Bedfort&family=Mr+Dafoe&family=Mrs+Saint+Delafield&family=Niconne&family=Norican&family=Nova+Cut&family=Nova+Script&family=Over+the+Rainbow&family=Parisienne&family=Patrick+Hand&family=Petit+Formal+Script&family=Pinyon+Script&family=Princess+Sofia&family=Qwigley&family=Redressed&family=Rochester&family=Romanesco&family=Rouge+Script&family=Ruthie&family=Satisfy&family=Sedgwick+Ave&family=Sedgwick+Ave+Display&family=Shrikhand&family=Sofia&family=Stalemate&family=Tangerine&family=The+Girl+Next+Door&family=Yellowtail&family=Zeyada&family=Mrs+Sheppards&family=WindSong&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Floating cat paws in background -->
+  <div class="cat-paw" style="top: 10%; left: 5%;">🐾</div>
+  <div class="cat-paw" style="top: 70%; left: 80%;">🐾</div>
+  <div class="cat-paw" style="top: 30%; left: 60%;">🐾</div>
+  <div class="cat-paw" style="top: 80%; left: 20%;">🐾</div>
+  
+  <div class="container">
+    <h1 class="title">CopyCat Signature Generator</h1>
+    
+    <div class="signature-input-container">
+      <div class="signature-input-wrapper">
+        <input type="text" class="signature-input" id="signatureInput" placeholder="Type your signature here...">
+        <div class="signature-cat floating-cat">🐱</div>
+      </div>
+      
+      <div class="options-bar">
+        <div class="color-option">
+          <div class="color-circle" id="colorCircle"></div>
+          <span id="colorValue">#000000</span>
+          <input type="color" id="colorPicker" value="#000000">
+        </div>
+        
+        <div class="size-slider-container">
+          <span>Size:</span>
+          <input type="range" min="1" max="3" value="2" step="1" class="size-slider" id="sizeSlider">
+        </div>
+        
+        <button class="view-option active" data-view="grid">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7z"/>
+          </svg>
+          Grid
+        </button>
+        
+        <button class="view-option" data-view="list">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+            <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+            <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+          </svg>
+          List
+        </button>
+        
+        <button class="clear-btn" id="clearBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+            <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+          </svg>
+          Clear
+        </button>
+      </div>
+    </div>
+    
+    <div class="signatures-grid" id="signaturesGrid">
+      <!-- Signatures will be generated here -->
+    </div>
+    
+    <div class="empty-state" id="emptyState">
+      <div style="font-size: 4rem; margin-bottom: 20px;">😸</div>
+      <p>Type your signature to see purr-fect options!</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

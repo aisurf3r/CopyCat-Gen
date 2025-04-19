@@ -1,0 +1,507 @@
+:root {
+  --primary: #6d28d9;
+  --primary-dark: #5b21b6;
+  --secondary: #f59e0b;
+  --accent: #ec4899;
+  --success: #10b981;
+  --danger: #ef4444;
+  --light: #f5f5f5;
+  --dark: #1f2937;
+  --cat-purple: #8b5cf6;
+  --cat-pink: #ec4899;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #f9fafb 0%, #e5e7eb 100%);
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.title {
+  text-align: center;
+  color: var(--dark);
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  position: relative;
+  background: linear-gradient(45deg, var(--cat-purple), var(--cat-pink));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  font-weight: 800;
+}
+
+.title::after {
+  content: "🐾";
+  position: absolute;
+  right: 20%;
+  top: -15px;
+  font-size: 1.5rem;
+}
+
+.signature-input-container {
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.signature-input-wrapper {
+  position: relative;
+  border-radius: 50px;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 0 15px rgba(139, 92, 246, 0.3);
+  padding: 5px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.signature-input-wrapper:focus-within {
+  border-color: var(--cat-purple);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.signature-input {
+  width: 100%;
+  padding: 18px 25px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 50px;
+  outline: none;
+  background: transparent;
+  color: var(--dark);
+}
+
+.signature-cat {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.signature-input:focus + .signature-cat {
+  transform: translateY(-50%) rotate(10deg);
+  opacity: 1;
+}
+
+.options-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  cursor: pointer;
+}
+
+.color-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #000000;
+  border: 1px solid #ddd;
+}
+
+#colorPicker {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.view-option {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-option:hover {
+  background-color: #f9f9f9;
+}
+
+.view-option.active {
+  background-color: var(--cat-purple);
+  color: white;
+  border-color: var(--cat-purple);
+}
+
+.clear-btn {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--danger);
+}
+
+.clear-btn:hover {
+  background-color: #ffebee;
+}
+
+.size-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 150px;
+}
+
+.size-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #ddd;
+  outline: none;
+}
+
+.size-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cat-purple);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.size-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--cat-purple);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-slider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+.signatures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.signatures-grid.list-view {
+  grid-template-columns: 1fr;
+}
+
+.signatures-grid.list-view .signature-card {
+  flex-direction: row;
+  align-items: center;
+  padding: 15px;
+  height: 100px;
+}
+
+.signatures-grid.list-view .font-name {
+  width: 200px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.signatures-grid.list-view .signature-preview {
+  flex-grow: 1;
+  margin-bottom: 0;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.signatures-grid.list-view .download-btn {
+  width: 120px;
+  margin-left: auto;
+}
+
+.signature-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #eee;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.signature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15));
+}
+
+.signature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.font-name {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.signature-preview {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+/* Handwriting font classes */
+.dancing-script { font-family: 'Dancing Script', cursive; }
+.sacramento { font-family: 'Sacramento', cursive; }
+.caveat { font-family: 'Caveat', cursive; }
+.shadows-into-light { font-family: 'Shadows Into Light', cursive; }
+.pacifico { font-family: 'Pacifico', cursive; }
+.homemade-apple { font-family: 'Homemade Apple', cursive; }
+.alex-brush { font-family: 'Alex Brush', cursive; }
+.allura { font-family: 'Allura', cursive; }
+.bad-script { font-family: 'Bad Script', cursive; }
+.berkshire-swash { font-family: 'Berkshire Swash', cursive; }
+.cedarville-cursive { font-family: 'Cedarville Cursive', cursive; }
+.clicker-script { font-family: 'Clicker Script', cursive; }
+.cookie { font-family: 'Cookie', cursive; }
+.courgette { font-family: 'Courgette', cursive; }
+.damion { font-family: 'Damion', cursive; }
+.dawning-of-a-new-day { font-family: 'Dawning of a New Day', cursive; }
+.devonshire { font-family: 'Devonshire', cursive; }
+.engagement { font-family: 'Engagement', cursive; }
+.ephesis { font-family: 'Ephesis', cursive; }
+.farsan { font-family: 'Farsan', cursive; }
+.freehand { font-family: 'Freehand', cursive; }
+.gloria-hallelujah { font-family: 'Gloria Hallelujah', cursive; }
+.gochi-hand { font-family: 'Gochi Hand', cursive; }
+.grand-hotel { font-family: 'Grand Hotel', cursive; }
+.great-vibes { font-family: 'Great Vibes', cursive; }
+.handlee { font-family: 'Handlee', cursive; }
+.herr-von-muellerhoff { font-family: 'Herr Von Muellerhoff', cursive; }
+.indie-flower { font-family: 'Indie Flower', cursive; }
+.itim { font-family: 'Itim', cursive; }
+.italianno { font-family: 'Italianno', cursive; }
+.just-another-hand { font-family: 'Just Another Hand', cursive; }
+.just-me-again-down-here { font-family: 'Just Me Again Down Here', cursive; }
+.kalam { font-family: 'Kalam', cursive; }
+.kaushan-script { font-family: 'Kaushan Script', cursive; }
+.kavoon { font-family: 'Kavoon', cursive; }
+.kristi { font-family: 'Kristi', cursive; }
+.la-belle-aurore { font-family: 'La Belle Aurore', cursive; }
+.league-script { font-family: 'League Script', cursive; }
+.leckerli-one { font-family: 'Leckerli One', cursive; }
+.lobster { font-family: 'Lobster', cursive; }
+.lobster-two { font-family: 'Lobster Two', cursive; }
+.long-cang { font-family: 'Long Cang', cursive; }
+.mali { font-family: 'Mali', cursive; }
+.marck-script { font-family: 'Marck Script', cursive; }
+.meow-script { font-family: 'Meow Script', cursive; }
+.mrs-saint-delafield { font-family: 'Mrs Saint Delafield', cursive; }
+.niconne { font-family: 'Niconne', cursive; }
+.norican { font-family: 'Norican', cursive; }
+.nova-script { font-family: 'Nova Script', cursive; }
+.over-the-rainbow { font-family: 'Over the Rainbow', cursive; }
+.parisienne { font-family: 'Parisienne', cursive; }
+.patrick-hand { font-family: 'Patrick Hand', cursive; }
+.petit-formal-script { font-family: 'Petit Formal Script', cursive; }
+.pinyon-script { font-family: 'Pinyon Script', cursive; }
+.princess-sofia { font-family: 'Princess Sofia', cursive; }
+.qwigley { font-family: 'Qwigley', cursive; }
+.redressed { font-family: 'Redressed', cursive; }
+.rochester { font-family: 'Rochester', cursive; }
+.romanesco { font-family: 'Romanesco', cursive; }
+.rouge-script { font-family: 'Rouge Script', cursive; }
+.ruthie { font-family: 'Ruthie', cursive; }
+.satisfy { font-family: 'Satisfy', cursive; }
+.sedgwick-ave { font-family: 'Sedgwick Ave', cursive; }
+.shrikhand { font-family: 'Shrikhand', cursive; }
+.sofia { font-family: 'Sofia', cursive; }
+.stalemate { font-family: 'Stalemate', cursive; }
+.tangerine { font-family: 'Tangerine', cursive; }
+.the-girl-next-door { font-family: 'The Girl Next Door', cursive; }
+.yellowtail { font-family: 'Yellowtail', cursive; }
+.zeyada { font-family: 'Zeyada', cursive; }
+.mrs-sheppards { font-family: 'Mrs Sheppards', cursive; }
+.windsong { font-family: 'WindSong', cursive; }
+
+.download-btn {
+  background-color: var(--cat-purple);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.download-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2));
+}
+
+.hidden {
+  display: none;
+}
+
+.empty-state {
+  text-align: center;
+  color: #999;
+  margin-top: 60px;
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.cat-paw {
+  position: fixed;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+  font-size: 10rem;
+}
+
+/* Color themes for signature cards */
+.signature-card:nth-child(12n+1)::before { background: var(--cat-purple); }
+.signature-card:nth-child(12n+2)::before { background: var(--secondary); }
+.signature-card:nth-child(12n+3)::before { background: var(--accent); }
+.signature-card:nth-child(12n+4)::before { background: var(--success); }
+.signature-card:nth-child(12n+5)::before { background: var(--danger); }
+.signature-card:nth-child(12n+6)::before { background: #ff9800; }
+.signature-card:nth-child(12n+7)::before { background: #009688; }
+.signature-card:nth-child(12n+8)::before { background: #3f51b5; }
+.signature-card:nth-child(12n+9)::before { background: #607d8b; }
+.signature-card:nth-child(12n+10)::before { background: #795548; }
+.signature-card:nth-child(12n+11)::before { background: #ff5722; }
+.signature-card:nth-child(12n+12)::before { background: #673ab7; }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating-cat {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .title::after {
+    right: 10%;
+    top: -10px;
+    font-size: 1.2rem;
+  }
+  
+  .signature-input {
+    padding: 14px 20px;
+    font-size: 1.1rem;
+  }
+  
+  .options-bar {
+    gap: 10px;
+  }
+  
+  .view-option, .clear-btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .signatures-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  .signatures-grid.list-view .font-name {
+    width: 120px;
+    font-size: 0.8rem;
+  }
+  
+  .signatures-grid.list-view .signature-card {
+    padding: 10px;
+    height: 80px;
+  }
+  
+  .signatures-grid.list-view .download-btn {
+    width: 90px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .options-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .signatures-grid {
+    grid-template-columns: 1fr;
+  }
+}
