@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const sizeSlider = document.getElementById('sizeSlider');
   
   let currentColor = '#000000';
-  let currentSize = 2; // Medium by default
-  
-  // Handwriting fonts only
+  let currentSize = 2;
+
   const handwritingFonts = [
     { name: 'Dancing Script', class: 'dancing-script' },
     { name: 'Sacramento', class: 'sacramento' },
@@ -87,8 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
     { name: 'Mrs Sheppards', class: 'mrs-sheppards' },
     { name: 'WindSong', class: 'windsong' }
   ];
-  
-  // Generate signature cards
+
   function generateSignatures(text) {
     if (!text.trim()) {
       signaturesGrid.innerHTML = '';
@@ -96,8 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
       signatureCat.textContent = '🐱';
       return;
     }
-    
-    // Change cat emoji when typing
+
     const catEmojis = ['😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿', '😾'];
     const randomCat = catEmojis[Math.floor(Math.random() * catEmojis.length)];
     signatureCat.textContent = randomCat;
@@ -118,13 +115,12 @@ document.addEventListener('DOMContentLoaded', function() {
       preview.textContent = text;
       preview.style.color = currentColor;
       
-      // Apply size to preview
       let fontSize;
-      if (currentSize === 1) { // Small
+      if (currentSize === 1) {
         fontSize = '1.5rem';
-      } else if (currentSize === 2) { // Medium
+      } else if (currentSize === 2) {
         fontSize = '2rem';
-      } else { // Large
+      } else {
         fontSize = '2.5rem';
       }
       preview.style.fontSize = fontSize;
@@ -150,58 +146,40 @@ document.addEventListener('DOMContentLoaded', function() {
       signaturesGrid.appendChild(card);
     });
   }
-  
-  // Download signature as image
+
   function downloadSignature(text, fontClass, color, size, fontName) {
-    // Wait for fonts to load
     document.fonts.ready.then(() => {
-      // Create a temporary canvas to measure text
+      const fontObj = handwritingFonts.find(font => font.class === fontClass);
+      if (!fontObj) return;
+      
+      let fontSize;
+      if (size === 1) fontSize = 30;
+      else if (size === 2) fontSize = 40;
+      else fontSize = 50;
+      
       const tempCanvas = document.createElement('canvas');
       const tempCtx = tempCanvas.getContext('2d');
-      
-      // Set temporary font style
-      let fontSize;
-      if (size === 1) { // Small
-        fontSize = 30;
-      } else if (size === 2) { // Medium
-        fontSize = 40;
-      } else { // Large
-        fontSize = 50;
-      }
-      
-      // Apply font to temporary context
-      tempCtx.font = `${fontSize}px ${fontClass}`;
-      
-      // Measure text
+      tempCtx.font = `${fontSize}px "${fontObj.name}"`;
       const textWidth = tempCtx.measureText(text).width;
       
-      // Create final canvas
       const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d');
+      canvas.width = textWidth + 40;
+      canvas.height = fontSize * 2;
       
-      canvas.width = textWidth + 40; // Add padding
-      canvas.height = fontSize * 2; // Add padding
+      ctx.font = `${fontSize}px "${fontObj.name}"`;
+      ctx.fillStyle = color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(text, canvas.width/2, canvas.height/2);
       
-      // Transparent background
-      context.fillStyle = 'transparent';
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Draw text with correct font
-      context.font = `${fontSize}px ${fontClass}`;
-      context.fillStyle = color;
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
-      context.fillText(text, canvas.width / 2, canvas.height / 2);
-      
-      // Create download link
       const link = document.createElement('a');
       link.download = `signature-${fontName.toLowerCase().replace(/\s+/g, '-')}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
   }
-  
-  // Event listeners
+
   signatureInput.addEventListener('input', function() {
     generateSignatures(this.value);
   });
@@ -211,7 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
     generateSignatures('');
   });
   
-  // Color picker
   colorPicker.addEventListener('input', function() {
     currentColor = this.value;
     colorCircle.style.backgroundColor = currentColor;
@@ -219,13 +196,11 @@ document.addEventListener('DOMContentLoaded', function() {
     generateSignatures(signatureInput.value);
   });
   
-  // Size slider
   sizeSlider.addEventListener('input', function() {
     currentSize = parseInt(this.value);
     generateSignatures(signatureInput.value);
   });
   
-  // View toggle
   document.querySelectorAll('.view-option').forEach(button => {
     button.addEventListener('click', function() {
       document.querySelectorAll('.view-option').forEach(btn => {
@@ -234,18 +209,12 @@ document.addEventListener('DOMContentLoaded', function() {
       this.classList.add('active');
       
       const view = this.getAttribute('data-view');
-      if (view === 'list') {
-        signaturesGrid.classList.add('list-view');
-      } else {
-        signaturesGrid.classList.remove('list-view');
-      }
+      signaturesGrid.classList.toggle('list-view', view === 'list');
     });
   });
   
-  // Initial state
   generateSignatures(signatureInput.value);
   
-  // Add some fun cat effects
   signatureInput.addEventListener('focus', () => {
     signatureCat.style.transform = 'translateY(-50%) scale(1.2)';
   });
